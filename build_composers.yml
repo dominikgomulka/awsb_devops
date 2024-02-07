@@ -1,7 +1,6 @@
 ---
-- name: Update Snipe IT
+- name: Build composer images
   hosts: "{{ ENV_HOST }}"
   roles:
     - common
-    - docker
-    - snipe-it
+    - composer_build

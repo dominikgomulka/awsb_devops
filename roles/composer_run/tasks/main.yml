@@ -1,0 +1,19 @@
+---
+- name: Run composer
+  community.docker.docker_container:
+    name: "composer_{{ ansible_date_time.epoch }}"
+    image: "{{ COMPOSER_IMAGE }}"
+    state: started
+    user: "{{ ansible_facts['user_uid'] }}:{{ ansible_facts['user_gid'] }}"
+    network_mode: "{{ COMPOSER_NETWORK }}"
+    cleanup: true
+    interactive: true
+    detach: false
+    working_dir: "{{ COMPOSER_WORKDIR }}"
+    volumes:
+      - "/etc/passwd:/etc/passwd:ro"
+      - "/etc/group:/etc/group:ro"
+      - "{{ ansible_env.HOME }}/.ssh/:{{ ansible_env.HOME }}/.ssh:ro"
+      - '{{ COMPOSER_PROJECT }}:{{ COMPOSER_WORKDIR }}'
+    command: "{{ COMPOSER_COMMAND }}"
+    timeout: 360

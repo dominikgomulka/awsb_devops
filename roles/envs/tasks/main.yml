@@ -1,0 +1,6 @@
+---
+- name: Parse environmental variables into a file
+  ansible.builtin.template:
+    src: env
+    dest: "{{DOCKER_ROOT_PATH}}/.env"
+    mode: '0660'

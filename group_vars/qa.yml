@@ -1,4 +1,9 @@
 ---
+ENV: qa
+ENV_DEBUG: 'false'
+ENV_MAX_RESULTS: 600
+ENV_FILES_DIR: /home/projects/project1/project1_git
+
 PROJECTS_PATH: /home/projects
 DOCKER_ROOT_PATH: /home/projects/docker
 

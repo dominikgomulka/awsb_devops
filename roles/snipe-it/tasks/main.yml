@@ -13,3 +13,15 @@
     REPO_DEST: "{{ PROJECTS_PATH }}{{ SNIPEIT_PATH }}{{ SNIPEIT_GIT_PATH }}"
     REPO_VERSION: "{{ SNIPEIT_BRANCH }}"
 
+- name: Parse envs
+  ansible.builtin.include_role:
+    name: envs
+
+- name: Run composer update
+  ansible.builtin.include_role:
+    name: composer_run
+  vars:
+    COMPOSER_PROJECT: "{{ PROJECTS_PATH }}{{ SNIPEIT_PATH }}{{ SNIPEIT_GIT_PATH }}"
+    COMPOSER_COMMAND: composer install --no-dev --prefer-source
+    COMPOSER_WORKDIR: /snipeit
+    

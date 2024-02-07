@@ -28,7 +28,6 @@
 - name: Install packages through pip
   ansible.builtin.pip:
     name:
-      - docker-compose
       - j2cli
       - docker
   become: true
@@ -47,7 +46,3 @@
     groups: sudo,docker
     append: true
   become: true
-
-- name: Restart shell for current user
-  ansible.builtin.shell: 'newgrp docker'
-

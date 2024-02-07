@@ -1,7 +1,6 @@
 ---
-- name: Update Snipe IT
+- name: Parse environment variables
   hosts: "{{ ENV_HOST }}"
   roles:
     - common
-    - docker
-    - snipe-it
+    - envs
