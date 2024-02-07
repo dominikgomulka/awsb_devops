@@ -1,0 +1,15 @@
+---
+- name: Create/Check log directory
+  ansible.builtin.file:
+    path: "{{ PROJECTS_PATH }}{{ SNIPEIT_PATH }}/log"
+    state: directory
+    mode: '0770'
+
+- name: Clone repository
+  ansible.builtin.include_role:
+    name: git_clone
+  vars:
+    REPO: "{{ ENV_REPO }}"
+    REPO_DEST: "{{ PROJECTS_PATH }}{{ SNIPEIT_PATH }}{{ SNIPEIT_GIT_PATH }}"
+    REPO_VERSION: "{{ SNIPEIT_BRANCH }}"
+

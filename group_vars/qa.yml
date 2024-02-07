@@ -1,0 +1,6 @@
+---
+PROJECTS_PATH: /home/projects
+DOCKER_ROOT_PATH: /home/projects/docker
+
+SNIPEIT_PATH: /snipeit
+SNIPEIT_GIT_PATH: /snipeit_git

@@ -1,0 +1,6 @@
+---
+- name: Initialize MySQL on QA
+  hosts: qa
+  roles:
+    - common
+    - mysql

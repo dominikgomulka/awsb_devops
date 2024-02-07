@@ -1,0 +1,6 @@
+---
+- name: Update Snipe IT
+  hosts: "{{ ENV_HOST }}"
+  roles:
+    - common
+    - snipe-it
