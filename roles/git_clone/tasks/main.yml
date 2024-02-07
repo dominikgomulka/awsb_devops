@@ -1,0 +1,8 @@
+---
+- name: Cloning repository
+  ansible.builtin.git:
+    repo: "{{ REPO }}"
+    dest: "{{ REPO_DEST }}"
+    force: true
+    version: "{{ REPO_VERSION }}"
+    accept_hostkey: true

@@ -1,0 +1,27 @@
+---
+- name: Check/Create temporary directory for dockerfiles
+  ansible.builtin.file:
+    path: "/tmp/awsb/composer/"
+    state: directory
+    mode: 0770
+
+- name: Copy composer dockerfiles
+  ansible.builtin.copy: 
+    src: composer{{ item }}.dockerfile
+    dest: /tmp/awsb/composer/dockerfile{{ item }}
+    force: yes
+  with_items:
+  - ['22_81', '26_83']
+
+- name: Build composer images
+  community.docker.docker_image: 
+    name: awsb_composer
+    tag: "{{ item }}"
+    build: 
+      path: /tmp/awsb/composer/
+      dockerfile: "dockerfile{{ item }}"
+      nocache: yes
+    force_source: yes
+    source: build
+  with_items:
+  - ['22_81', '26_83']

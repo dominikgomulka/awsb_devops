@@ -1,0 +1,27 @@
+---
+- name: Check/Create default directories
+  ansible.builtin.file:
+    path: "{{ PROJECTS_PATH }}"
+    state: directory
+    mode: '0777'
+  become: true
+
+- name: Check/Create Docker root path
+  ansible.builtin.file:
+    path: "{{ DOCKER_ROOT_PATH }}"
+    state: directory
+    mode: '0770'
+
+- name: Install default packages
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - apt-transport-https 
+      - ca-certificates
+      - curl
+      - gnupg2
+      - lsb-release
+      - python3-pip
+      - python-is-python3
+      - software-properties-common
+  become: true

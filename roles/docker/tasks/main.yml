@@ -1,0 +1,53 @@
+---
+- name: Uninstall conflicting packages
+  ansible.builtin.apt:
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+    state: absent
+  become: true
+
+- name: Add Docker repository key
+  ansible.builtin.shell: 'curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -'
+  become: true
+
+- name: Add Docker repository
+  ansible.builtin.shell: 'add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"'
+  when: INIT
+  become: true
+
+- name: Install Docker CE and PIP package manager
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - docker-ce
+      - python3-pip
+  become: true
+
+- name: Install packages through pip
+  ansible.builtin.pip:
+    name:
+      - docker-compose
+      - j2cli
+      - docker
+  become: true
+
+- name: Start Docker service
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+  when: INIT
+  become: true
+
+- name: Add user "{{ ansible_facts['user_id'] }}" to docker and sudo group
+  ansible.builtin.user:
+    name: "{{ ansible_facts['user_id'] }}"
+    groups: sudo,docker
+    append: true
+  become: true
+
+- name: Restart shell for current user
+  ansible.builtin.shell: 'newgrp docker'
+
