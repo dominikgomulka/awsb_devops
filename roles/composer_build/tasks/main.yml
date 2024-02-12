@@ -2,7 +2,7 @@
 - name: Copy composer dockerfiles
   ansible.builtin.copy: 
     src: composer{{ item }}.dockerfile
-    dest: "{{ DOCKER_ROOT_PATH }}/dockerfile{{ item }}"
+    dest: "{{ DOCKER_ROOT_PATH }}/composer/dockerfile{{ item }}"
     force: yes
   with_items:
   - ['22_81', '26_83']
@@ -12,7 +12,7 @@
     name: awsb_composer
     tag: "{{ item }}"
     build: 
-      path: "{{ DOCKER_ROOT_PATH }}"
+      path: "{{ DOCKER_ROOT_PATH }}/composer"
       dockerfile: "dockerfile{{ item }}"
       nocache: yes
     force_source: yes
