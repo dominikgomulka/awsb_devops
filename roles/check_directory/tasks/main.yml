@@ -1,0 +1,8 @@
+---
+- name: Check content of tmp directory
+  ansible.builtin.shell: "ls -la /tmp"
+  register: tmp_content
+
+- name: List content of tmp directory
+  ansible.builtin.debug:
+    msg: "{{ tmp_content.stdout_lines }}"

@@ -1,0 +1,5 @@
+---
+- name: Check important directory
+  hosts: "{{ ENV_HOST }}"
+  roles:
+    - check_directory
