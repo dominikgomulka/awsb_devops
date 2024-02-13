@@ -1,2 +1,5 @@
 ---
 ENV_REPO: https://github.com/snipe/snipe-it.git
+
+ENV_DEBUG: false
+ENV_FILES_DIR: "{{ PROJECTS_PATH }}{{ SNIPEIT_PATH }}{{ SNIPEIT_GIT_PATH }}"
