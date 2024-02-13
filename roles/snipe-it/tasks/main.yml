@@ -16,6 +16,8 @@
 - name: Parse envs
   ansible.builtin.include_role:
     name: envs
+  vars:
+    ENV_DEST: "{{ PROJECTS_PATH }}{{ SNIPEIT_PATH }}{{ SNIPEIT_GIT_PATH }}/.env.awsb"
 
 - name: Run composer update
   ansible.builtin.include_role:
