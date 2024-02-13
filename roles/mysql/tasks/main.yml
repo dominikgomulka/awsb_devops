@@ -58,7 +58,7 @@
       ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e 'stop slave;'"
 
     - name: Change master to primary node
-      ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e \"CHANGE MASTER TO MASTER_HOST='{{ ENV_NODE1_IP }}', MASTER_USER='replica' , MASTER_PASSWORD='{{ ENV_MYSQL_PASS }}', MASTER_LOG_FILE='{{ hostvars['debian-node1']['master_binlog'].stdout }}', MASTER_LOG_POS={{ hostvars['debian-node1']['master_position'].stdout }};\""
+      ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e \"CHANGE MASTER TO MASTER_HOST='{{ ENV_NODE1_IP }}', MASTER_USER='replica' , MASTER_PASSWORD='{{ ENV_MYSQL_PASS }}', MASTER_LOG_FILE='{{ hostvars['qa1']['master_binlog'].stdout }}', MASTER_LOG_POS={{ hostvars['qa1']['master_position'].stdout }};\""
 
     - name: Start slave on secondary node
       ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e 'start slave;'"
@@ -87,7 +87,7 @@
       ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e 'stop slave;'"
 
     - name: Change master to primary node
-      ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e \"CHANGE MASTER TO MASTER_HOST='{{ ENV_NODE2_IP }}', MASTER_USER='replica' , MASTER_PASSWORD='{{ ENV_MYSQL_PASS }}', MASTER_LOG_FILE='{{ hostvars['debian-node2']['slave_binlog'].stdout }}', MASTER_LOG_POS={{ hostvars['debian-node2']['slave_position'].stdout }};\""
+      ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e \"CHANGE MASTER TO MASTER_HOST='{{ ENV_NODE2_IP }}', MASTER_USER='replica' , MASTER_PASSWORD='{{ ENV_MYSQL_PASS }}', MASTER_LOG_FILE='{{ hostvars['qa2']['slave_binlog'].stdout }}', MASTER_LOG_POS={{ hostvars['qa2']['slave_position'].stdout }};\""
 
     - name: Start slave on primary node
       ansible.builtin.shell: "mysql -u root --password={{ ENV_MYSQL_PASS }} -e 'start slave;'"
