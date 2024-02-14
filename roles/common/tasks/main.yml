@@ -8,7 +8,7 @@
 
 - name: Check/Create Docker root path
   ansible.builtin.file:
-    path: "{{ DOCKER_ROOT_PATH }}"
+    path: "{{ DOCKER_ROOT_PATH }}/composer"
     state: directory
     mode: '0770'
 
