@@ -6,11 +6,7 @@
   become: true
 
 - name: Install MySQL Server
-  ansible.builtin.apt:
-    name: mysql-server
-    state: present
-    update_cache: true
-  become: true
+  ansible.builtin.shell: "ls -la"
 
 - name: Delete old mysqld configuration
   ansible.builtin.file:
