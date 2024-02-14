@@ -3,5 +3,4 @@
   hosts: "{{ ENV_HOST }}"
   roles:
     - common
-    - docker
     - snipe-it
