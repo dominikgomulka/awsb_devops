@@ -1,8 +1,14 @@
 - name: Download MySQL upstream repository package
-  ansible.builtin.shell: wget -O /tmp/mysql-apt-config.deb https://dev.mysql.com/get/mysql-apt-config_0.8.24-1_all.deb
+  ansible.builtin.shell: wget -O /tmp/mysql-apt-config.deb https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
 
 - name: Configure MySQL upstream repository
   ansible.builtin.shell: env DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/mysql-apt-config.deb
+  become: true
+
+- name: Get official GPG key from MySQL
+  ansible.builtin.apt_key:
+    url: https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+    state: present
   become: true
 
 - name: Install MySQL Server
